@@ -67,17 +67,18 @@ export default function Shop_2(props) {
 
   return (
     <div className="overflow-y-auto overflow-x-hidden bg-fixed bg-no-repeat bg-center bg-cover" style={{ backgroundImage: `url(${background})` }}>
-      <Navbar />
-      <div className="pt-24 flex w-screen flex-wrap gap-y-5">
-        <div className="flex justify-end items-start flex-wrap gap-5 w-6/12 h-fit  p-5">
-          {productData.imgUrls.map((imageUrl, index) => (
-            <div key={index} className="basis-5/12 h-64 bg-red-50 shadow-custom border border-solid border-black " onClick={() => openModal(index)}>
-              <img className="w-full h-full object-cover cursor-pointer" src={imageUrl} alt="" />
-            </div>
-          ))}
+  <Navbar />
+  <div className="pt-24 flex flex-wrap gap-y-5">
+    <div className="flex justify-end items-start flex-wrap gap-5 w-full sm:w-6/12 p-5">
+      {productData.imgUrls.map((imageUrl, index) => (
+        <div key={index} className="basis-full sm:basis-5/12 h-64 bg-red-50 shadow-custom border border-solid border-black" onClick={() => openModal(index)}>
+          <img className="w-full h-full object-cover cursor-pointer" src={imageUrl} alt="" />
         </div>
-        <div className="flex justify-center w-6/12 h-fit p-5">
-          <div className="flex flex-wrap flex-col items-start gap-x-3 gap-y-4 w-9/12 h-fit bg-red-100 p-10 border border-solid border-black shadow-custom">
+      ))}
+    </div>
+    <div className="flex justify-center w-full sm:w-6/12 p-5">
+      <div className="flex flex-wrap flex-col items-start gap-x-3 gap-y-4 w-full sm:w-9/12 bg-red-100 p-10 border border-solid border-black shadow-custom">
+       
             <div className="flex justify-between w-full">
               <h1 className="font-Roboto font-extrabold text-2xl">{productData.name}</h1>
               <div className="flex justify-center items-center gap-2 w-fit">
