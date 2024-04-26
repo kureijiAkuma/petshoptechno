@@ -36,7 +36,7 @@ export default [
         img:"shop_placeholder.png"
     },
     {
-        name:"Ian Santiago",
+        name:"Owen",
         img:"shop_placeholder.png"
     },
     {

@@ -11,7 +11,7 @@ export default function Adopt_2() {
     return (
         <div className="bg-fixed bg-no-repeat bg-center bg-cover h-screen" style={{ backgroundImage: `url(${background})` }}>
             <Navbar />
-            <div className="flex w-full h-5/6 ">
+            <div className="pt-48 flex w-full h-5/6 ">
 
                 <div className="flex flex-col justify-center items-center w-5/12  ">
                     <div className="flex flex-col justify-center items-center w-fit h-fit bg-red-100 rounded-3xl p-3 shadow-custom border border-solid border-black">
@@ -67,8 +67,9 @@ export default function Adopt_2() {
 
                         <div className="flex justify-start items-center gap-2">
                             <img className="w-12 h-12 border-solid border border-black/80 rounded-full object-cover shadow-custom-2" src={placeholder} alt="" />
-                            <h1 className="font-Roboto text-lg font-semibold">Ian Matthew A. Santiago</h1>
+                            <h1 className="font-Roboto text-lg font-semibold">Petsland</h1>
                         </div>
+
                         <div className="flex justify-start items-start h-fit max-h-56 w-full ">
                             <h1 className="font-Roboto text-justify max-h-full overflow-y-auto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pharetra a dui vel tincidunt.
                                 Quisque ac consectetur diam, vitae tempus libero. Quisque non arcu volutpat, auctor enim sit amet, pulvinar justo.
@@ -87,45 +88,15 @@ export default function Adopt_2() {
 
                     <div className="flex flex-col justify-start h-fit max-h-44 bg-red-100 w-11/12 py-3 px-10 gap-2 rounded-3xl border border-solid border-black shadow-custom-2">
                         <h1 className="text-center text-lg font-Roboto font-semibold italic">Special Traits</h1>
-                        <ul className="flex justify-evenly flex-wrap list-disc gap-x-5 gap-y-1 w-full max-h-full mb-2 overflow-y-auto">
-                            <li>Lorem</li>
-                            <li>asdfgasd</li>
-                            <li>asdh sdvsvsdv</li>
-                            <li>asd asdffffffff</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd asdffffffff</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd asdffffffff</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd asdffffffff</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>                           <li>asd asdffffffff</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>                           <li>asd asdffffffff</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
-                            <li>asd</li>
+                        <ul className="flex justify-evenly items-center flex-wrap list-disc gap-x-5 gap-y-1 w-full max-h-full mb-2 overflow-y-auto">
+                           
+                            <li className="">Lorem</li>
+                            <li className="">Lorem</li>
+                            <li className="">Lorem</li>
+
+
+
+
 
 
                         </ul>

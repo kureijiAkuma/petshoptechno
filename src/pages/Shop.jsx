@@ -1,35 +1,69 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { DB } from "../firebase"
 import Navbar from "../templates/Navbar";
 import background from "../images/bg_2.jpg"
 import catpeek from "../images/cat_peek.png"
-import data from "../lists/items_shop.js"
 import Shopcardlist from "../templates/Shopcardlist"
 import Pagination from "../templates/Pagination"
+import { GetProduct } from "../API/GetItems";
+
 
 
 export default function Shop() {
+
+
+    const [list, setList] = useState([])
+
+    const fetchData = async () => {
+        try {
+            const response = await GetProduct();
+            if (response.success) {
+                const productList = response.data.map(item => ({
+                    ...item,
+                    docid: item.id // Assuming the unique identifier is stored in 'id'
+                }));
+                setList(productList);
+            }
+        } catch (error) {
+            console.error("Error fetching product data:", error);
+        }
+    };
     
+    // Call the API when component mounts.
+    useEffect(() => { fetchData() }, [])
+
+
+    {/*Load Database in Shop items folder */ }
+    const shopItemsCollectionRef = collection(DB, "shopitems");
+    console.log(shopItemsCollectionRef)
+    const [shopitems, setShopItems] = useState([]);
+
+    {/*Number of post per page */ }
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(12);
 
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
-    const currentPosts = data.slice(firstPostIndex, lastPostIndex);
+    const currentPosts = list.slice(firstPostIndex, lastPostIndex);
+
+
 
     return (
-        <div div className=" h-screen bg-fixed bg-no-repeat bg-center bg-cover" style={{ backgroundImage: `url(${background})` }}>
+        <div div className="h-screen overflow-y-auto overflow-x-hidden bg-fixed bg-no-repeat bg-center bg-cover" style={{ backgroundImage: `url(${background})` }}>
             <Navbar />
-            <div className="flex w-full h-5/6">
-                <div className="flex flex-col w-3/12 justify-between items-center ">
+            <div className="relative pt-20 flex justify-start w-full h-screen">
 
-                    <div className=" pt-6 w-full flex flex-col justify-center items-center gap-4">
+                <div className="h-full flex flex-col w-3/12 justify-between items-center ">
 
-                        <div className="w-3/4 bg-pink-50 shadow-md shadow-zinc-950/50 hover:bg-red-100  hover:cursor-pointer py-2 px-5 font-normal text-base text-gray-700">
+                    <div className=" pt-6 w-full flex flex-col justify-center items-center gap-5">
+
+                        <div className="w-3/4 bg-pink-50 shadow-md shadow-zinc-950/50 border border-solid border-black/20 hover:bg-red-100  hover:cursor-pointer py-2 px-5 font-normal text-base text-gray-700">
                             <h1 className="font-semibold text-base">Sort Latest</h1>
                         </div>
 
-                        <div className="p-5 pb-6 w-3/4 font-Roboto bg-pink-50 shadow-md shadow-zinc-950/50">
+                        <div className="p-5 pb-6 w-3/4 font-Roboto bg-pink-50 shadow-md shadow-zinc-950 border border-solid border-black/20">
                             <h1 className=" pb-2 border-b border-b-gray-700 font-semibold text-lg text-gray-700">PRODUCT CATEGORIES</h1>
                             <ul >
                                 <li className=" hover:bg-red-100 hover:rounded-md hover:shadow-md shadow-black/50 hover:cursor-pointer px-2 py-2 border-b border-b-gray-700 font-normal text-base text-gray-700">Accessories</li>
@@ -51,7 +85,7 @@ export default function Shop() {
 
                     <div className="flex justify-center basis-full ">
                         <Pagination
-                            totalPosts={data.length}
+                            totalPosts={list.length}
                             postsPerPage={postsPerPage}
                             setCurrentPage={setCurrentPage}
                             currentPage={currentPage}
