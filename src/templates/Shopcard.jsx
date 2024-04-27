@@ -13,11 +13,11 @@ export default function Shopcard(props) {
     };
 
     return (
-        <button onClick={handleClick} className="flex flex-col justify-start gap-y-2 items-center w-52 h-72 hover:bg-red-100 hover:shadow-md hover:shadow-black/50 active:bg-red-200">
+        <button onClick={handleClick} className="flex flex-col justify-start items-center w-full sm:w-52 h-auto sm:h-72 hover:bg-red-100 hover:shadow-md hover:shadow-black/50 active:bg-red-200 p-4">
             
-            <img className="mt-2 w-11/12 h-44 bg-white shadow-md shadow-black/50 border border-gray-700/50" src={props.productData.thumbnailUrl} alt="" />
+            <img className="w-11/12 max-w-xs h-auto bg-white shadow-md shadow-black/50 border border-gray-700/50"  src={props.productData.thumbnailUrl} alt="" />
             
-            <div className="flex gap-x-2">
+            <div className="flex gap-x-2 mt-2">
             {[...Array(5)].map((_, index) => {
                   if (index < Math.floor(props.productData.rating)) {
                     return <img key={index} className="w-5 h-5" src={star_fill} alt="" />;
@@ -29,8 +29,8 @@ export default function Shopcard(props) {
                 })}
             </div>
 
-            <h1 className="font-Roboto font-normal text-base">{props.productData.name}</h1>
-            <h2 className="font-Roboto text-orange-900 font-normal text-base">₱{props.productData.price}</h2>
+            <h1 className="ffont-Roboto font-normal text-sm sm:text-base mt-2">{props.productData.name}</h1>
+            <h2 className="font-Roboto text-orange-900 font-normal text-sm sm:text-base">₱{props.productData.price}</h2>
 
         </button>
     )
