@@ -117,49 +117,44 @@ export default function UserSettings() {
 
     return (
         <div className="flex flex-col justify-start items-center">
-            <Navbar />
-            <div className="flex flex-col justify-center h-screen w-3/5 pt-20 p-20 bg-white gap-4">
-                <h1 className='font-Roboto font-semibold text-xl'>Settings</h1>
-                <div>
-                    <Input variant="outlined" label="Change Username" placeholder="Outlined" value={newDisplayName} onChange={(e) => setNewDisplayName(e.target.value)} />
-                </div>
+    <Navbar />
+    <div className="flex flex-col justify-center pt-20 p-4 bg-white gap-4">
+      <h1 className='font-Roboto font-semibold text-xl text-center'>Settings</h1>
+      <div className="p-4">
+        <Input variant="outlined" label="Change Username" placeholder="Outlined" value={newDisplayName} onChange={(e) => setNewDisplayName(e.target.value)} />
+      </div>
 
+      <div className="p-4">
+        <input
+          type="tel"
+          id="phone-input"
+          className="placeholder-blue-gray-500 w-full rounded-[7px] border border-blue-gray-200 bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200  empty:!bg-gray-200 focus:border-2  focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+          pattern="[0-9]{11}"
+          maxLength="11"
+          placeholder="09975342236"
+        />
+        <label htmlFor="phone-input" className="text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0]">Phone number</label>
+      </div>
 
-                <div className="relative">
-                    <span className="absolute start-3 bottom-3 text-gray-500 dark:text-gray-400">
-                        <svg className="w-4 h-4 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 18">
-                            <path d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z" />
-                        </svg>
-                    </span>
-                    <input
-                        type="tel"
-                        id="phone-input"
-                        className="placeholder-blue-gray-500 h-full w-full pl-8 rounded-[7px] border border-blue-gray-200 bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200  empty:!bg-gray-200 focus:border-2  focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                        pattern="[0-9]{11}"
-                        maxLength="11"
-                        placeholder="09975342236"
-                    />
-                    <label for="floating-phone-number" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:start-6 peer-focus:start-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Phone number</label>
-                </div>
+      <div className="p-4">
+        <select
+          className="w-full rounded-[7px] border border-blue-gray-200 bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200  empty:!bg-gray-900 focus:border-2  focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+          value={selectedBarangay}
+          onChange={(e) => setSelectedBarangay(e.target.value)}
+        >
+          <option disabled>Select a Barangay</option>
+          {barangays.map(barangay => (
+            <option key={barangay.code} value={barangay.name}>{barangay.name}</option>
+          ))}
+        </select>
+      </div>
 
+      <div className="p-4">
+        <button onClick={handleSubmit} className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update Changes</button>
+      </div>
 
-                <div>
-                    <select
-                        className="peer h-full w-full rounded-[7px] border border-blue-gray-200 bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200  empty:!bg-gray-900 focus:border-2  focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                        value={selectedBarangay}
-                        onChange={(e) => setSelectedBarangay(e.target.value)}
-                    >
-                        <option disabled>Select a Barangay</option>
-                        {barangays.map(barangay => (
-                            <option key={barangay.code} value={barangay.name}>{barangay.name}</option>
-                        ))}
-                    </select>
-                </div>
-
-                <button onClick={handleSubmit}>Update Changes</button>
-
-                {errorMessage && <p>{errorMessage}</p>}
-            </div>
-        </div>
-    );
+      {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
+    </div>
+  </div>
+);
 }
